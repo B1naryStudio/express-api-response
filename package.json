@@ -1,6 +1,6 @@
 {
   "name": "express-api-response",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Middleware for picking REST API HTTP status code",
   "main": "index.js",
   "scripts": {
@@ -23,9 +23,7 @@
     "url": "https://github.com/B1naryStudio/express-api-response.git)/issues"
   },
   "homepage": "https://github.com/B1naryStudio/express-api-response.git)",
-  "dependencies": {
-    "lodash.isempty": "~2.4.1"
-  },
+
   "devDependencies": {
     "mocha": "~1.21.5",
     "supertest": "~0.14.0",
