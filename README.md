@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/B1naryStudio/express-rest-api-response.svg)](https://travis-ci.org/B1naryStudio/express-rest-api-response)
+[![Build Status](https://travis-ci.org/B1naryStudio/express-api-response.svg)](https://travis-ci.org/B1naryStudio/express-api-response)
 
 ## Install
 > npm install express-api-response
@@ -7,27 +7,65 @@
 Middleware for serving json responses with correct REST API / HTTP status codes without pain.
 Works with [Express](https://github.com/visionmedia/express).
 
-| Method | Error present | No error, no data | No error, data |
-|--------|---------------|-------------------|----------------|
-| get    | 400           | 404               | 200            |
-| post   | 400           | 201               | 201            |
-| put    | 400           | 204               | 200            |
-| delete | 400           | 204               | 200            |
-| patch  | 400           | 204               | 200            |
+**express-api-response** creates 5 new fields on express response object:
+- res.data - object which will be transferred to the client.
+- res.err - error which occured within route handler.
+- res.shouldNotHaveData - indicates, whether empty res.data field should lead to 
+failure status code.
+- res.successStatus - status code which will be added to the response in case of success.
+- res.failureStatus - status code which will be added to the response in case of failure.
 
+
+| Method | Error present | No error, no data | No error, data | shouldNotHaveData|
+|--------|---------------|-------------------|----------------|------------------|
+| get    | 400           | 404               | 200            | false            |
+| post   | 400           | 201               | 201            | true             |
+| put    | 400           | 204               | 200            | true             |
+| delete | 400           | 204               | 200            | true             |
+| patch  | 400           | 204               | 200            | true             |
 ##Usage
 
-**Warning**: image-optimus should be used before a middleware that is serving 
-files so that it serves changed format file.   
-
 ```js
-var optimus = require('connect-image-optimus');
+var express = require('express');
+var app = express();
+var apiResponse = require('express-api-response');
 
-var staticPath = __dirname + '/static/';
-
-app.use(optimus(staticPath));
-app.use(connect.static(staticPath));
+app.get('/', function(req, res, next){
+	res.data = {data: 'myjson'};
+	next();
+}, apiResponse);
 ```
+
+```
+var express = require('express');
+var app = express();
+var apiResponse = require('express-api-response');
+
+app.post('/route', function(req, res, next){
+	asyncFunction(function(err, data){
+		res.data = data;
+		res.err = err;
+		next();
+	});
+}, apiResponse);
+```
+
+```
+var express = require('express');
+var app = express();
+var apiResponse = require('express-api-response');
+
+app.delete('/route', function(req, res, next){
+	asyncFunction(function(err, data){
+		res.data = data;
+		res.err = err;
+		res.shouldNotHaveData = false;
+		res.failureStatus = 702;
+		next();
+	});
+}, apiResponse);
+```
+
 ##Contributing
 Feel free to open issues and send PRs, though make sure that you create tests
 for new functionality and amend ones for fixes and changes. 
