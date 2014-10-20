@@ -8,12 +8,12 @@ describe('express api middleware on *patch* should', function(){
 		app = express();
 	});
 
-	it('return 404 code on no data', function(done){
+	it('return 204 code on no data', function(done){
 		app.patch('/', apiResponse);
 		
 		request(app)
 		.patch('/')
-		.expect(404)
+		.expect(204)
 		.end(done);
 	});
 
@@ -29,7 +29,7 @@ describe('express api middleware on *patch* should', function(){
 		.end(done);
 	});
 
-	it('return 404 code on non-object data', function(done){
+	it('return 204 code on non-object data', function(done){
 		app.patch('/', function(req, res, next){
 			res.data = 'asd';
 			next();
@@ -37,7 +37,7 @@ describe('express api middleware on *patch* should', function(){
 
 		request(app)
 		.patch('/')
-		.expect(404)
+		.expect(204)
 		.end(done);
 	});
 
@@ -53,7 +53,7 @@ describe('express api middleware on *patch* should', function(){
 		.end(done);
 	});
 
-	it('return 400 code on empty object data', function(done){
+	it('return 204 code on empty object data', function(done){
 		app.patch('/', function(req, res, next){
 			res.data = {};
 			next();
@@ -61,7 +61,7 @@ describe('express api middleware on *patch* should', function(){
 
 		request(app)
 		.patch('/')
-		.expect(404)
+		.expect(204)
 		.end(done);
 	});
 
@@ -77,7 +77,7 @@ describe('express api middleware on *patch* should', function(){
 		.end(done);
 	});
 
-	it('return 404 code on empty array data', function(done){
+	it('return 204 code on empty array data', function(done){
 		app.patch('/', function(req, res, next){
 			res.data = [];
 			next();
@@ -85,7 +85,7 @@ describe('express api middleware on *patch* should', function(){
 
 		request(app)
 		.patch('/')
-		.expect(404)
+		.expect(204)
 		.end(done);
 	});
 

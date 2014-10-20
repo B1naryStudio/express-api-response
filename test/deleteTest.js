@@ -8,12 +8,12 @@ describe('express api middleware on *delete* should', function(){
 		app = express();
 	});
 
-	it('return 404 code on no data', function(done){
+	it('return 204 code on no data', function(done){
 		app.delete('/', apiResponse);
 		
 		request(app)
 		.delete('/')
-		.expect(404)
+		.expect(204)
 		.end(done);
 	});
 
@@ -26,18 +26,6 @@ describe('express api middleware on *delete* should', function(){
 		request(app)
 		.delete('/')
 		.expect(400)
-		.end(done);
-	});
-
-	it('return 404 code on non-object data', function(done){
-		app.delete('/', function(req, res, next){
-			res.data = 'asd';
-			next();
-		}, apiResponse);
-
-		request(app)
-		.delete('/')
-		.expect(404)
 		.end(done);
 	});
 
@@ -61,7 +49,7 @@ describe('express api middleware on *delete* should', function(){
 
 		request(app)
 		.delete('/')
-		.expect(404)
+		.expect(204)
 		.end(done);
 	});
 
@@ -77,7 +65,7 @@ describe('express api middleware on *delete* should', function(){
 		.end(done);
 	});
 
-	it('return 404 code on empty array data', function(done){
+	it('return 204 code on empty array data', function(done){
 		app.delete('/', function(req, res, next){
 			res.data = [];
 			next();
@@ -85,7 +73,7 @@ describe('express api middleware on *delete* should', function(){
 
 		request(app)
 		.delete('/')
-		.expect(404)
+		.expect(204)
 		.end(done);
 	});
 

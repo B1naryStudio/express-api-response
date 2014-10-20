@@ -11,15 +11,17 @@ module.exports = function(req, res, next){
 			shouldNotHaveData = res.shouldNotHaveData;
 			break;
 		case 'post':
-			shouldNotHaveData = res.shouldNotHaveData && true;
+			shouldNotHaveData = typeof res.shouldNotHaveData !== 'undefined' ? 
+				res.shouldNotHaveData : true;
 			successStatus = 201;
 			failureStatus = res.err ? 400 : 404;			
 			break;
 		case 'put':
 		case 'patch':
 		case 'delete':
-			shouldNotHaveData = res.shouldNotHaveData && true;
-			successStatus = shouldNotHaveData ? 204 : 200;
+			shouldNotHaveData = typeof res.shouldNotHaveData !== 'undefined' ? 
+				res.shouldNotHaveData : true;
+			successStatus = shouldNotHaveData && isEmpty(res.data)  ? 204 : 200;
 			failureStatus = res.err ? 400 : 404;
 			break;
 		default: 
@@ -33,7 +35,7 @@ module.exports = function(req, res, next){
 	if (res.err){
 		return res.status(failureStatus).end();
 	} else if ((isEmpty(res.data))){
-		if (!res.shouldNotHaveData){
+		if (!shouldNotHaveData){
 			return res.status(failureStatus).end();
 		} else {
 			return res.status(successStatus).end();
