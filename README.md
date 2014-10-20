@@ -3,6 +3,8 @@
 ## Install
 > npm install express-api-response
 
+[![NPM](https://nodei.co/npm/express-api-response.png)](https://nodei.co/npm/express-api-response/)
+
 ## Overview
 Middleware for serving json responses with correct REST API / HTTP status codes without pain.
 Works with [Express](https://github.com/visionmedia/express).
