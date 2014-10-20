@@ -1,0 +1,34 @@
+{
+  "name": "express-api-response",
+  "version": "0.0.0",
+  "description": "Middleware for picking REST API HTTP status code",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./node_modules/mocha/bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/B1naryStudio/express-api-response.git)"
+  },
+  "keywords": [
+    "express",
+    "rest",
+    "api",
+    "response",
+    "http"
+  ],
+  "author": "msemenistyi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/B1naryStudio/express-api-response.git)/issues"
+  },
+  "homepage": "https://github.com/B1naryStudio/express-api-response.git)",
+  "dependencies": {
+    "lodash.isempty": "~2.4.1"
+  },
+  "devDependencies": {
+    "mocha": "~1.21.5",
+    "supertest": "~0.14.0",
+    "express": "~4.9.8"
+  }
+}
