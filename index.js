@@ -30,7 +30,7 @@ module.exports = function(req, res, next) {
 				failureStatus = res.err ? 400 : 404;
 		}
 
-		if (res.err !== undefined && res.err.message !== undefined) {
+		if (res.err !== undefined && res.err !== null && res.err.message !== undefined && res.err.message !== null) {
 			if(res.shouldSendErrorMessage === undefined) {
 				shouldSendErrorMessage = true;
 			} else {
