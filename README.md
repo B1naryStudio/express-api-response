@@ -14,9 +14,11 @@ Works with [Express](https://github.com/visionmedia/express).
 - res.err - error which occured within route handler.
 - res.shouldNotHaveData - indicates, whether empty res.data field should lead to 
 failure status code.
+-res.shouldSendErrorMessage - indicates, whether error message should be sent with status 
+code.
 - res.successStatus - status code which will be added to the response in case of success.
 - res.failureStatus - status code which will be added to the response in case of failure.  
-These two status parameters and the shouldNotHaveData one are optional and most of the time 
+These two status parameters, the shouldNotHaveData and shouldHaveErrorMessage are optional and most of the time 
 you will not use them. Here are the default values for different methods:
 
 | Method | Error present | No error, no data | No error, data | shouldNotHaveData|
@@ -47,7 +49,9 @@ var apiResponse = require('express-api-response');
 app.post('/route', function(req, res, next){
 	asyncFunction(function(err, data){
 		res.data = data;
-		res.err = err;
+		res.err = {
+			message: 'Something went wrong', 
+		};
 		next();
 	});
 }, apiResponse);
@@ -62,6 +66,7 @@ app.delete('/route', function(req, res, next){
 	asyncFunction(function(err, data){
 		res.data = data;
 		res.err = err;
+		res.shouldSendErrorMessage = false
 		res.shouldNotHaveData = false;
 		res.failureStatus = 702;
 		next();
