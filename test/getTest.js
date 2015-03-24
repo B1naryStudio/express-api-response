@@ -102,5 +102,40 @@ describe('express api middleware on *get* should', function(){
 		.end(done);
 	});
 
+	it('return 400 code on wrong data and should have error message', function(done) {
+		app.get('/', function(req, res, next) {
+			res.err = {
+				message: 'Something went wrong'
+			};
+			next();
+		}, apiResponse);
+
+		request(app)
+			.get('/')
+			.expect(400)
+			.end(function(err, res) {
+				res.error.text.should.equal('Something went wrong');
+				done();
+			});
+	});
+
+	it('return 400 code on wrong data and should not have error message', function(done) {
+		app.get('/', function(req, res, next) {
+			res.err = {
+				message: 'Something went wrong'
+			};
+			res.shouldSendErrorMessage = false;
+			next();
+		}, apiResponse);
+
+		request(app)
+			.get('/')
+			.expect(400)
+			.end(function(err, res) {
+				res.error.text.should.equal('');
+				done();
+			});
+	});
+
 });
 
