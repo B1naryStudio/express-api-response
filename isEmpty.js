@@ -1,10 +1,14 @@
- module.exports = function(obj) {
+ module.exports = function(obj, staticOptions) {
 
 		if (obj == null || typeof obj !== 'object') {
 			return true;
 		}
 
 		if (obj instanceof Array) {
+			if (staticOptions.emptyArrayIsOk){
+				return false;
+			}
+
 			return obj.length === 0;
 		}
 

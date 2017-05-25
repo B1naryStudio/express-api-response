@@ -77,6 +77,22 @@ describe('express api middleware on *get* should', function(){
 		.end(done);
 	});
 
+	it('return 404 code on empty array data with {emptyArrayIsOk: true}', function(done){
+		apiResponse.options({emptyArrayIsOk: true});
+
+		app.get('/', function(req, res, next){
+			res.data = [];
+			next();
+		}, apiResponse);
+
+		request(app)
+		.get('/')
+		.expect(404)
+		.end(done);
+
+		apiResponse.options({emptyArrayIsOk: false});
+	});
+
 	it('return 404 code on empty array data', function(done){
 		app.get('/', function(req, res, next){
 			res.data = [];
