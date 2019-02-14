@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/B1naryStudio/express-api-response.git)"
+    "url": "git://github.com/B1naryStudio/express-api-response.git"
   },
   "keywords": [
     "express",
@@ -20,9 +20,9 @@
   "author": "msemenistyi",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/B1naryStudio/express-api-response.git)/issues"
+    "url": "https://github.com/B1naryStudio/express-api-response/issues"
   },
-  "homepage": "https://github.com/B1naryStudio/express-api-response.git)",
+  "homepage": "https://github.com/B1naryStudio/express-api-response",
   "devDependencies": {
     "mocha": "~1.21.5",
     "supertest": "~0.14.0",
