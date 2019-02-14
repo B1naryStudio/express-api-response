@@ -110,8 +110,8 @@ for new functionality and amend ones for fixes and changes.
 
 The MIT License (MIT)
 
-[![Binary Studio](http://binary-studio.com/wp-content/uploads/2014/11/logo.gif)](http://binary-studio.com)  
-Copyright (c) 2014-2017 Semenistyi Mykyta nikeiwe@gmail.com
+[![Binary Studio](https://d3ot0t2g92r1ra.cloudfront.net/img/binary-small-logo.png)](http://binary-studio.com)  
+Copyright (c) 2014-2019 Semenistyi Mykyta nikeiwe@gmail.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

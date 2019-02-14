@@ -1,6 +1,6 @@
 {
   "name": "express-api-response",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Middleware for picking REST API HTTP status code",
   "main": "index.js",
   "scripts": {
